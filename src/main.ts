@@ -1,24 +1,26 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
+document.querySelector<HTMLDivElement>('.container')!.innerHTML = `
+<div class="display">0</div>
+<div class="panelButtons">
+    <button class="operation" id="bright-grey">AC</button>
+    <button class="operation" id="bright-grey">&#177;</button>
+    <button class="operation" id="bright-grey">%</button>
+    <button class="operation" id="orange">÷</button>
+    <button class="number" id="grey">7</button>
+    <button class="number" id="grey">8</button>
+    <button class="number" id="grey">9</button>
+    <button class="operation" id="orange">×</button>
+    <button class="number" id="grey">4</button>
+    <button class="number" id="grey">5</button>
+    <button class="number" id="grey">6</button>
+    <button class="operation" id="orange">−</button>
+    <button class="number" id="grey">1</button>
+    <button class="number" id="grey">2</button>
+    <button class="number" id="grey">3</button>
+    <button class="operation" id="orange">+</button>
+    <button class="number" id="grey">0</button>
+    <button id="grey">,</button>
+    <button class="operation" id="orange">=</button>
+</div>
 `
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
