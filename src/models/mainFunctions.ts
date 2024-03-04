@@ -1,7 +1,7 @@
 import { ICalculator } from "./types";
 
 function handleOperation(operation:string, calculator:ICalculator) {  
-  calculator.operands.operation = ""
+  calculator.operands.operation = null;
   switch (operation) {
       case "+":
         return calculator.add();
@@ -11,8 +11,7 @@ function handleOperation(operation:string, calculator:ICalculator) {
         return calculator.multiply();
       case "÷":
         return calculator.devide();
-      case "=":
-        return calculator.operands.a
+      
     }
   }
 function showInDisplay(display:Element, content:string) {

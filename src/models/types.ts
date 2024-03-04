@@ -1,8 +1,8 @@
 export interface ICalculator{
     operands:{
-     a: number,
-     b:number,
-     operation:string
+     a: number|null,
+     b:number|null,
+     operation:string|null
     }
      add():number;
      subtract():number;
