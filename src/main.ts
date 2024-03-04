@@ -1,26 +1,43 @@
-import './style.css'
+import Calculator from "./models/Calculator";
+import "./style.css";
+import { showInDisplay, handleOperation } from "./models/mainFunctions";
 
-document.querySelector<HTMLDivElement>('.container')!.innerHTML = `
-<div class="display">0</div>
-<div class="panelButtons">
-    <button class="operation" id="bright-grey">AC</button>
-    <button class="operation" id="bright-grey">&#177;</button>
-    <button class="operation" id="bright-grey">%</button>
-    <button class="operation" id="orange">÷</button>
-    <button class="number" id="grey">7</button>
-    <button class="number" id="grey">8</button>
-    <button class="number" id="grey">9</button>
-    <button class="operation" id="orange">×</button>
-    <button class="number" id="grey">4</button>
-    <button class="number" id="grey">5</button>
-    <button class="number" id="grey">6</button>
-    <button class="operation" id="orange">−</button>
-    <button class="number" id="grey">1</button>
-    <button class="number" id="grey">2</button>
-    <button class="number" id="grey">3</button>
-    <button class="operation" id="orange">+</button>
-    <button class="number" id="grey">0</button>
-    <button id="grey">,</button>
-    <button class="operation" id="orange">=</button>
-</div>
-`
+const calculator = new Calculator();
+const buttonsNumber = [...document.querySelectorAll<Element>(".number")];
+const buttonOperation = [...document.querySelectorAll<Element>(".operation")];
+const display = document.querySelector<Element>(".display") as Element;
+
+buttonsNumber.map((button) =>
+  button.addEventListener("click", () => {
+    if (button.textContent) {
+      calculator.operands.operation === ""
+        ? (calculator.operands.a = +(
+            calculator.operands.a + button.textContent
+          ))
+        : (calculator.operands.b = +(
+            calculator.operands.b + button.textContent
+          ));
+      if (display.textContent === "0") {
+        display.textContent = "";
+        display.textContent += button.textContent;
+      } else {
+        display.textContent += button.textContent;
+      }
+    }
+  })
+);
+
+buttonOperation.map((operation) =>
+  operation.addEventListener("click", () => {
+    if (operation.textContent) {
+      if (calculator.operands.operation !== "" && calculator.operands.a && calculator.operands.b) {
+        showInDisplay(display,"" + handleOperation(operation.textContent, calculator)
+        );
+      } else {
+        calculator.operands.operation = operation.textContent;
+        display.textContent = "0";
+      }
+    }
+    console.table(calculator.operands);
+  })
+);
